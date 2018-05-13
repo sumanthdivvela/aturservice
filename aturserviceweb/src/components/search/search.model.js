@@ -23,11 +23,14 @@ export default {
     },
     querySearchAsync(queryString, cb) {
       this.$store.dispatch("getProServicesByFilter", { queryString, cb });
+    
     },
 
     handleSelect(selectedService) {
         this.$store.dispatch("setSelectedService" , selectedService);
         this.$store.dispatch("getServiceDetails" , selectedService);
+
+        this.$router.push({ name: 'servicedetails' });
     }
   },
 

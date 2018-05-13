@@ -1,3 +1,23 @@
+.flexContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  align-content: center;
+}
+
+
+.flexItem {
+  width: 50%;
+  height: 50px;
+  line-height: 100px;
+  align-self: center;
+  text-align: center;
+}
+
+
+
 @media only screen and (min-width: 440px) and (max-width: 768px) {
 }
 

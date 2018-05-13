@@ -50,22 +50,27 @@ const professionalsData = [{
 ];
 
 const genericComments = [{
+    id:1,
     text: " Comment 1",
     username: "xxxxxx",
     date: "2018-04-28"
 }, {
+    id:2,
     text: " Comment 2",
     username: "Adam",
     date: "2018-04-28"
 }, {
+    id:3,
     text: " Comment 3",
     username: "John",
     date: "2018-04-18"
 }, {
+    id:4,
     text: " Comment 4",
     username: "Mike",
     date: "2018-03-08"
 }, {
+    id:5,
     text: " Comment 5",
     username: "Matt",
     date: "2018-05-21"

@@ -17,35 +17,25 @@
 
         <h3>Comments: </h3>
          
+             <section >
 
-            <el-table
-                :data="selectedProfessionalDetails.comments"
-                height="250"
-                style="width: 100%">
 
-                 <el-table-column
-                     type="index"
-                    width="50">
-                </el-table-column>
-                
-                <el-table-column
-                prop="username"
-                label="Username"
-                width="120">
-                </el-table-column>
+         <div class="flexContainer"   v-for="comment in selectedProfessionalDetails.comments" 
+            v-bind:key="comment.id" style="width:100%" > 
+            <div class="flexItem namecell" >
+                    <div>{{comment.username }} : </div>
+            </div>
+            <div class="flexItem textcell" >
+                    <div>{{comment.text }} </div>
+            </div>
+            <div class="flexItem datecell" >
+                    <div>  {{comment.date }} </div>
+            </div>
+        </div>
 
-                <el-table-column
-                prop="date"
-                label="Date"
-                width="100">
-                </el-table-column>
+        <div v-if="!selectedProfessionalDetails.comments" > No comments available at this time. </div>
 
-                <el-table-column
-                prop="text"
-                label="Comment">
-                </el-table-column>
-
-            </el-table>
+    </section>
 
         </div>
          

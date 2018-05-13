@@ -10,12 +10,12 @@
   .flexItem {
     width: 80%;
     align-self: center;
-    border-bottom: black solid 1px;
+    border-bottom: #546E7A solid 1px;
     display: table;
   }
   
   .flexItem:hover {
-      background-color: black;
+      background-color: #546E7A;
       color: white;
       cursor: pointer;
   }

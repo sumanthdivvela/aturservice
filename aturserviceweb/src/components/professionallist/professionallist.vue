@@ -8,44 +8,24 @@
     width="80%"
     :before-close="handleClose">
 
-    <div >
+    <section >
 
-         <el-table
-                :data="professionalsList"
-                height="250"
-                stripe
-                highlight-current-row
-                @current-change="handleProfessionalSelection"
-                order="desending"
-                empty-text="No professional available at this time."
-                style="width:100%">
+        <div  v-for="professional in professionalsList"
+                v-bind:key="professional.id"
+                v-on:click="handleProfessionalSelection(professional)">
+        <el-row :gutter="0"  >
 
-                 <el-table-column
-                     type="index"
-                  header-align="center"
-                    width="50">
-                </el-table-column>
+         <el-col :xs="0" :sm="4" :md="4" :lg="4" :xl="2"><div class="grid-content bg-purple">Name :</div></el-col>
+        <el-col :xs="18" :sm="12" :md="12" :lg="12" :xl="12"><div class="grid-content bg-purple-light"> {{professional.name }} </div></el-col>
+        <el-col :xs="0" :sm="4" :md="4" :lg="4" :xl="2"><div class="grid-content bg-purple">Rating :</div></el-col>
+        <el-col :xs="6" :sm="4" :md="4" :lg="4" :xl="8"><div class="grid-content bg-purple-light">{{professional.avg_rating }}</div></el-col>
+        
+        </el-row>
+        </div>
+        <div v-if="!professionalsList" > No professional available at this time. </div>
 
-                <el-table-column
-                prop="name"
-                label="Name"
-                 header-align="center"
-                 width="180"
-               >
-                </el-table-column>
+    </section>
 
-
-               <el-table-column
-                prop="avg_rating"
-                label="Rating"
-                 header-align="center"
-                sortable>
-                </el-table-column>
-
-            </el-table>
-
-
-    </div>
     <span slot="footer" class="dialog-footer">
         <el-button @click="handleClose()">Cancel</el-button>
     </span>
