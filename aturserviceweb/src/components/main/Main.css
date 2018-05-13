@@ -1,0 +1,60 @@
+
+@import url("../../assets/themeElUi.css");
+
+.el-header,
+.el-footer {
+  background-color: #546E7A;
+  color: #333;
+  text-align: center;
+  line-height: 60px;
+  padding: 0px;
+}
+
+.el-aside {
+  background-color: #d3dce6;
+  color: #333;
+  text-align: center;
+  line-height: 200px;
+}
+
+.el-main {
+  background-color: #CFD8DC;
+  color: #333;
+  text-align: center;
+}
+
+body > .el-container {
+  margin-bottom: 40px;
+}
+
+.el-container:nth-child(5) .el-aside,
+.el-container:nth-child(6) .el-aside {
+  line-height: 260px;
+}
+
+.el-container:nth-child(7) .el-aside {
+  line-height: 320px;
+}
+
+@media only screen and (max-width: 768px) {
+  .welMsg1 {
+    font: bold 21px  arial, sans-serif;
+  }
+
+  .welMsg2 {
+    font:  14px arial, sans-serif;
+    padding-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .welMsg1 {
+    font: bold 28px  arial, sans-serif;
+  }
+
+  .welMsg2 {
+    font: 21px arial, sans-serif;
+    padding-top: 10px;
+    padding-bottom: 40px;
+  }
+}
