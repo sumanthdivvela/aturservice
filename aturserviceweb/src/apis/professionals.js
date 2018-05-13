@@ -76,8 +76,9 @@ const genericComments = [{
 function getProfessionalsByService(service_key, pincode) {
     return new Promise((resolve, reject) => {
         try {
-            const professionals = professionalsData.filter(prof => 
-                prof.services_list.includes(service_key) && prof.locations.includes(pincode)
+
+            const professionals = professionalsData.filter(prof => prof.locations.includes(pincode)
+                  /* && prof.services_list.includes(service_key) //removed this condition as professonals data is less . */
             );
             resolve(professionals || []);
         } catch (e) {
