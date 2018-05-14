@@ -30,5 +30,5 @@ Application navigation:
 13) click "Next"
 14) Job details are displayed.
 15) Click "Confirm" , job will be created.
-
+16) Jobs List workflow is still in prograss, to see Job requests list and accept/cancel them.
 
