@@ -95,6 +95,7 @@ export default {
             // console.log("On Next of locations : " );
             //this.$store.dispatch("setDisplayProfessionalsList", true);
             if (this.selectedServiceDetails && this.pincode) {
+                
                 const cb = ((store, router, selectedServiceDetails, pincode) => success => {
                     if(success){
                         try {

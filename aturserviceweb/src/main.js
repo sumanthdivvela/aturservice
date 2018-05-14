@@ -10,6 +10,7 @@ import serviceslist from "./components/serviceslist/serviceslist.vue";
 import servicedetails from "./components/servicedetails/servicedetails.vue";
 import joblocation from "./components/joblocation/joblocation.vue";
 import professionallist from "./components/professionallist/professionallist.vue";
+import jobslist from "./components/jobslist/jobslist.vue";
 
 
 Vue.config.productionTip = false
@@ -39,7 +40,11 @@ const routes = [{
     name: 'joblocation',
     component: joblocation
   },
-
+  {
+    path: '/jobslist',
+    name: 'jobslist',
+    component: jobslist
+  },
   {
     path: '/professionallist',
     name: 'professionallist',

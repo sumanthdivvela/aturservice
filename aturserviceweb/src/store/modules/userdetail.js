@@ -1,3 +1,4 @@
+import professionals from '../../apis/professionals.js'
 // initial state
 
 const mutationTypes = {
@@ -6,16 +7,18 @@ const mutationTypes = {
     SET_USERINFO : "SET_USERINFO",
     SET_IS_LOGGED_IN : "SET_IS_LOGGED_IN",
     SET_DISPLAY_LOGIN_DETAILS: "SET_DISPLAY_LOGIN_DETAILS",
-    SET_LOGIN_CALLBACK: "SET_LOGIN_CALLBACK"
+    SET_LOGIN_CALLBACK: "SET_LOGIN_CALLBACK",
+    SET_IS_PROFESSIONAL: "SET_IS_PROFESSIONAL",
 
 }
 
 const state = {
     isLoggedIn: false,
     displayLogin: false,
+    isProfessional:false,
     username: "",
     password: null,
-    userinfo: {firstname: "First Name " , lastname: " Last Name"},
+    userinfo: {firstname: "First Name " , lastname: " Last Name" , phoneNo: "9876543210"},
     loginCallback:null
 }
 
@@ -43,7 +46,6 @@ const actions = {
         commit(mutationTypes.SET_DISPLAY_LOGIN_DETAILS, display);
     },
 
-
     handleUserLogout({commit}){
         commit(mutationTypes.SET_IS_LOGGED_IN, false);
         commit(mutationTypes.SET_USERINFO, null);
@@ -59,15 +61,23 @@ const actions = {
 
     validateUserlogin({commit,state} , callback){
 
-        commit(mutationTypes.SET_IS_LOGGED_IN, true);
-        commit(mutationTypes.SET_USERINFO, { username : this.username, phoneNo: "888888888" }  );
 
         let loggedIn = true;
 
-        if(loggedIn){
-            callback(loggedIn);
-            state.loginCallback && state.loginCallback(loggedIn);
+        const cb = (loggedIn, loginCallback, callback) => result => {
+            result && commit(mutationTypes.SET_IS_PROFESSIONAL, true);
+            if(loggedIn){
+                callback({success: loggedIn, isProfessional : !!result} );
+                loginCallback && loginCallback(loggedIn);
+                commit(mutationTypes.SET_IS_LOGGED_IN, true);
+                commit(mutationTypes.SET_USERINFO, { username : this.username, phoneNo: "888888888" }  );
+            }
         }
+
+        professionals.getProfessionalDetailsByName(state.username)
+        .then(cb(loggedIn, state.loginCallback, callback));
+
+        
        
     }
 
@@ -102,6 +112,10 @@ const mutations = {
 
     [mutationTypes.SET_IS_LOGGED_IN] : function(state, isLoggedIn){
         state.isLoggedIn = !!isLoggedIn;
+    },
+
+    [mutationTypes.SET_IS_PROFESSIONAL] : function(state, isProfessional){
+        state.isProfessional = !!isProfessional;
     },
 }
 

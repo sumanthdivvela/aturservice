@@ -1,12 +1,31 @@
 
+let jobdetails = [];
 
  
 
-function createJob (){
-    
+function createJobRequest ( job){
+    jobdetails.push(job);
+}
+/*
+function getJobsByProfessional(profId, status){
+
 
 }
 
-export default {
+function acceptJobRequest(profId, job){
 
+}
+
+function getJobsByUser(username, status) {
+    
+}
+*/
+
+export default {
+    createJobRequest,
+    /*
+    getJobsByProfessional,
+    acceptJobRequest,
+    getJobsByUser
+*/
 }

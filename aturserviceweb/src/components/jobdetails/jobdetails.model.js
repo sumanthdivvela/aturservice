@@ -11,10 +11,19 @@ export default {
         displayJobDetails: state => state.jobDetails.displayJobDetails,
         cityName: state => state.locDetails.cityName,
         jobdate: state => state.jobDetails.jobDate,
+        userinfo: state => state.userDetails.userinfo,
     }),
     methods: {
         handleConfirm() {
-            //this.$store.dispatch("scheduleNewJob" , false);
+
+            this.$store.dispatch("scheduleNewJob", {
+                professional: this.selectedProfessionalDetails,
+                service: this.selectedServiceDetails,
+                location: this.locationDetails,
+                userdetails: this.userinfo,
+                requestedDate: this.jobdate
+            });
+
             const h = this.$createElement;
 
             this.$notify({
@@ -28,8 +37,7 @@ export default {
 
         },
         handleCancel() {
-            this.$store.dispatch("setDisplayProfessionalsList", true);
-            this.$store.dispatch("setDisplayJobDetails", false);
+            this.$router.go(-1);
         }
     },
     filters: {

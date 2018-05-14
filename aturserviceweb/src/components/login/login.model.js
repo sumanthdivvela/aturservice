@@ -32,6 +32,7 @@ export default {
         },
         mapState({
             displayLogin: state => state.userDetails.displayLogin,
+            isProfessional: state => state.userDetils.isProfessional,
         })
     ),
 
@@ -40,16 +41,20 @@ export default {
         handleLogin() {
             if (this.username && this.password) {
                 try {
-                    let cb =  (store,message) => success => {
+                    let cb =  (store,router, message) => ( {success,isProfessional}) => {
                         if(success){
                             store.dispatch("setDisplayLogin", false);
                             message = null;
+                            if(isProfessional){
+                               router.push({ name: 'jobslist' });
+                            }
+
                         }else{
                             message = "Invalid username or password";
                         }
                     }
 
-                    this.$store.dispatch("validateUserlogin" , cb(this.$store, this.message));
+                    this.$store.dispatch("validateUserlogin" , cb(this.$store, this.$router, this.message));
                 } catch (e) {
                     console.log(e);
                 }

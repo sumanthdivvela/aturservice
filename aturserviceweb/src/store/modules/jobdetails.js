@@ -1,4 +1,4 @@
-//import jobDetails from '../../apis/jobdetails.js'
+import jobDetails from '../../apis/jobdetails.js'
 
 // initial state
 const mutationTypes = {
@@ -22,7 +22,8 @@ const state = {
         street2: null,
         city: null,
         pincode: null
-    }
+    },
+    jobsList: null
 }
 
 // getters
@@ -53,6 +54,12 @@ const actions = {
     setDisplayJobDetails({commit}, display){
         commit(mutationTypes.SET_DISPLAY_JOB_DETAILS, display);
     },
+
+    scheduleNewJob({commit}, payload){
+       // let job ={};
+        jobDetails.createJobRequest(payload);
+        commit(mutationTypes.SET_DISPLAY_JOB_DETAILS, false);
+    }
 }
 
 // mutations
