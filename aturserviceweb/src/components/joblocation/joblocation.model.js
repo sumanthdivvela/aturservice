@@ -132,6 +132,7 @@ export default {
         },
         handleCancel() {
             this.$store.dispatch("setDisplayJobLocation", false);
+            this.$store.dispatch("setDisplayServiceDetails" , true);
             this.$router.go(-1);
         }
     }

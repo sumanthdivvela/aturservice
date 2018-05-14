@@ -46,8 +46,6 @@
     </span>
 </el-dialog>
 
-<jobdetails />
-
 
  </div>
 </template>

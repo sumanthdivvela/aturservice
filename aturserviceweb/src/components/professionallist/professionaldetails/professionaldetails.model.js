@@ -17,11 +17,13 @@ export default {
 
       this.$store.dispatch("setDisplayJobDetails" ,true) ;
       this.$store.dispatch("setDisplayProfessionalDetails" , false);
+      this.$router.push({ name: 'jobdetails' });
 
     },
     handleCancel() {
       this.$store.dispatch("setDisplayProfessionalsList" , true);
       this.$store.dispatch("setDisplayProfessionalDetails" , false);
+      this.$router.go(-1);
     }
   }
 };

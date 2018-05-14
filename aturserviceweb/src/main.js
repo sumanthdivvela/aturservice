@@ -10,7 +10,11 @@ import serviceslist from "./components/serviceslist/serviceslist.vue";
 import servicedetails from "./components/servicedetails/servicedetails.vue";
 import joblocation from "./components/joblocation/joblocation.vue";
 import professionallist from "./components/professionallist/professionallist.vue";
+import professionaldetails
+from "./components/professionallist/professionaldetails/professionaldetails.vue";
 import jobslist from "./components/jobslist/jobslist.vue";
+import jobdetails from "./components/jobdetails/jobdetails.vue";
+
 
 
 Vue.config.productionTip = false
@@ -49,6 +53,17 @@ const routes = [{
     path: '/professionallist',
     name: 'professionallist',
     component: professionallist
+  },
+  {
+    path: '/professionaldetails',
+    name: 'professionaldetails',
+    component: professionaldetails
+  },
+
+  {
+    path: '/jobdetails',
+    name: 'jobdetails',
+    component: jobdetails
   },
 
 ];

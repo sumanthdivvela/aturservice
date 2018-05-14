@@ -35,7 +35,7 @@ const professionalsData = [{
         "phone_no": "8008800888",
         "services_list": ["ac_service_repair", "air_cooler_repair", "microwave_repair", "refrigerator_repair"],
         locations: ["500008", "500091"],
-        avg_rating: 1.5,
+        avg_rating: 3.5,
 
     }, {
         id: 6,

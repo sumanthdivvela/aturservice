@@ -3,7 +3,7 @@
 
     <el-dialog
 
-    :title="selectedServiceDetails.display_name"
+    :title="professionalListHeader"
     :visible.sync="dialogVisible"
     width="80%"
     :before-close="handleClose">
@@ -30,8 +30,6 @@
         <el-button @click="handleClose()">Cancel</el-button>
     </span>
     </el-dialog>
-
-    <professionaldetails  />
 
     </div>
 </template>

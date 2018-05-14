@@ -37,6 +37,7 @@ export default {
 
         },
         handleCancel() {
+            this.$store.dispatch("setDisplayProfessionalDetails" , true);
             this.$router.go(-1);
         }
     },

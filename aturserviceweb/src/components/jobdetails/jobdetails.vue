@@ -1,5 +1,6 @@
 <template>
- <div  v-if="selectedProfessionalDetails">
+ <div  v-if="selectedProfessionalDetails != null && selectedServiceDetails != null">
+
     <el-dialog
     title=" Final Job details "
     :visible.sync="displayJobDetails"
