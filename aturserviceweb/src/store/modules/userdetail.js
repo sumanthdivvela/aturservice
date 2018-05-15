@@ -51,7 +51,9 @@ const actions = {
         commit(mutationTypes.SET_USERINFO, null);
         commit(mutationTypes.SET_PASSWORD, null);
         commit(mutationTypes.SET_USERNAME, "");
+        commit(mutationTypes.SET_IS_PROFESSIONAL, false);
         commit(mutationTypes.SET_DISPLAY_LOGIN_DETAILS, true);
+        commit(mutationTypes.SET_LOGIN_CALLBACK, null);
     },
 
     getUserloggedin({commit}, callback){
@@ -64,20 +66,18 @@ const actions = {
 
         let loggedIn = true;
 
-        const cb = (loggedIn, loginCallback, callback) => result => {
+        const  cb = ( ( username , loggedIn, loginCallback, callback) => result => {
             result && commit(mutationTypes.SET_IS_PROFESSIONAL, true);
             if(loggedIn){
                 callback({success: loggedIn, isProfessional : !!result} );
                 loginCallback && loginCallback(loggedIn);
                 commit(mutationTypes.SET_IS_LOGGED_IN, true);
-                commit(mutationTypes.SET_USERINFO, { username : this.username, phoneNo: "888888888" }  );
+                commit(mutationTypes.SET_USERINFO, { username : username, phoneNo: "888888888" }  );
             }
-        }
+        }) (state.username, loggedIn, state.loginCallback, callback);
 
         professionals.getProfessionalDetailsByName(state.username)
-        .then(cb(loggedIn, state.loginCallback, callback));
-
-        
+        .then(cb);
        
     }
 

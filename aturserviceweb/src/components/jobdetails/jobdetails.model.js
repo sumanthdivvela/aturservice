@@ -5,24 +5,14 @@ import {
 export default {
 
     computed: mapState({
-        selectedProfessionalDetails: state => state.professionals.selectedProfessionalDetails,
-        selectedServiceDetails: state => state.proServices.selectedServiceDetails,
-        locationDetails: state => state.jobDetails.address,
-        displayJobDetails: state => state.jobDetails.displayJobDetails,
-        cityName: state => state.locDetails.cityName,
-        jobdate: state => state.jobDetails.jobDate,
-        userinfo: state => state.userDetails.userinfo,
+        selectedJob : state => state.jobDetails.selectedJob,
+        isProfessional : state => state.userDetails.isProfessional,
+        displayConfirm : state => !state.userDetails.isProfessional  && state.jobDetails.selectedJob.status == "REQUEST"
     }),
     methods: {
         handleConfirm() {
 
-            this.$store.dispatch("scheduleNewJob", {
-                professional: this.selectedProfessionalDetails,
-                service: this.selectedServiceDetails,
-                location: this.locationDetails,
-                userdetails: this.userinfo,
-                requestedDate: this.jobdate
-            });
+            this.$store.dispatch("scheduleNewJob", {status:"CREATED"});
 
             const h = this.$createElement;
 
@@ -34,6 +24,15 @@ export default {
             });
 
             this.$store.dispatch("setDisplayJobDetails", false);
+
+        },
+        handleJobCancel(){
+
+        },
+        handleJobAccepted(){
+
+        },
+        handleJobCompleted(){
 
         },
         handleCancel() {

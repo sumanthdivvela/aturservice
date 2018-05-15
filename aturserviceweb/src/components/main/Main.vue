@@ -11,6 +11,13 @@
                     </el-col>
                     <el-col :xs="6" :sm="4" :md="4" :lg="4" :xl="4">
                         <div class="grid-content">
+
+                            
+                            <router-link  v-if="isLoggedIn" class="el-button el-button--info" to="/jobslist">
+                            Jobs
+                            </router-link>
+                             
+
                             <el-button 
                              v-if="!isLoggedIn"
                              @click="handleLoginBtn()"

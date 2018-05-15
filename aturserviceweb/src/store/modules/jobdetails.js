@@ -8,8 +8,10 @@ const mutationTypes = {
     SET_STREET2 : "SET_STREET2",
     SET_CITY : "SET_CITY",
     SET_DISPLAY_JOB_LOCATION: "SET_DISPLAY_JOB_LOCATION",
-    SET_DISPLAY_JOB_DETAILS: "SET_DISPLAY_JOB_DETAILS"
-
+    SET_DISPLAY_JOB_DETAILS: "SET_DISPLAY_JOB_DETAILS",
+    SET_JOBS_LIST: "SET_JOBS_LIST",
+    SET_SELECTED_JOB: "SET_SELECTED_JOB",
+    UPDATE_JOB_STATUS: "UPDATE_JOB_STATUS"
 }
 
 const state = {
@@ -23,14 +25,57 @@ const state = {
         city: null,
         pincode: null
     },
+    selectedJob: null,
     jobsList: null
 }
 
 // getters
-const getters = {}
+const getters = {
+
+
+}
 
 // actions
 const actions = {
+    getJobsList({commit, rootState}){
+        const userDetails =rootState.userDetails;
+        const isProf = userDetails.isProfessional;
+        const username = userDetails.username;
+
+        const cb = ( commit => result => {
+            if(result && result.length == 0){
+                result = null;
+            }
+            commit(mutationTypes.SET_JOBS_LIST, result);
+        })(commit)
+ 
+        if(isProf){
+            jobDetails.getJobsByProfessional(username).then(cb).catch(e => console.log(e));
+        }else{
+            jobDetails.getJobsByUser(username).then(cb).catch(e => console.log(e));
+        }
+    },
+
+    prepareJobDetails : function({commit,state, rootState}){
+       
+        let cityName = rootState.locDetails.cityName;
+        commit(mutationTypes.SET_CITY, cityName);
+
+        let jobRequest =  {
+            professional: rootState.professionals.selectedProfessionalDetails,
+            service: rootState.proServices.selectedServiceDetails,
+            location: state.address,
+            userdetails: rootState.userDetails.userinfo,
+            requestedDate: state.jobDate,
+            status:"REQUEST"
+        }
+        commit(mutationTypes.SET_SELECTED_JOB, jobRequest);
+    },
+
+    setSelectedJob: function({commit} , jobRequest){
+        commit(mutationTypes.SET_SELECTED_JOB, jobRequest);
+    },
+
     setHouseno : function( {commit} , {houseno}){
         commit(mutationTypes.SET_HOUSENO, houseno);
     },
@@ -55,10 +100,11 @@ const actions = {
         commit(mutationTypes.SET_DISPLAY_JOB_DETAILS, display);
     },
 
-    scheduleNewJob({commit}, payload){
+    scheduleNewJob({commit,state}){
        // let job ={};
-        jobDetails.createJobRequest(payload);
-        commit(mutationTypes.SET_DISPLAY_JOB_DETAILS, false);
+        commit(mutationTypes.UPDATE_JOB_STATUS, jobDetails.JOB_STATUS.CREATED);
+        jobDetails.createJobRequest(state.selectedJob);
+        commit(mutationTypes.SET_SELECTED_JOB, null);
     }
 }
 
@@ -84,6 +130,14 @@ const mutations = {
         state.address.city = cityName;
     },
 
+    [mutationTypes.SET_JOBS_LIST] : function(state, jobsList){
+        state.jobsList = jobsList;
+    },
+
+    [mutationTypes.SET_SELECTED_JOB] : function(state, jobRequest){
+        state.selectedJob = jobRequest;
+    },
+
     [mutationTypes.SET_DISPLAY_JOB_LOCATION] : function(state, display){
         state.displayJobLocation = !!display;
     },
@@ -91,6 +145,10 @@ const mutations = {
     [mutationTypes.SET_DISPLAY_JOB_DETAILS] : function(state, display){
         state.displayJobDetails = !!display;
         state.jobDate = new Date();
+    },
+
+    [mutationTypes.UPDATE_JOB_STATUS] : function(state, status){
+        state.selectedJob.status  = status;
     },
 
 }

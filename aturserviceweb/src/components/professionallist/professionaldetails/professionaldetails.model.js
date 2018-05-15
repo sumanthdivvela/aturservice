@@ -15,7 +15,7 @@ export default {
   methods: {
     handleNext() {
 
-      this.$store.dispatch("setDisplayJobDetails" ,true) ;
+      this.$store.dispatch("prepareJobDetails" ,true) ;
       this.$store.dispatch("setDisplayProfessionalDetails" , false);
       this.$router.push({ name: 'jobdetails' });
 

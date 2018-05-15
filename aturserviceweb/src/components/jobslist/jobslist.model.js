@@ -4,23 +4,25 @@ import { mapState } from "vuex";
 export default {
 
   computed: mapState({
-    isProfessional: state => state.userDetils.isProfessional,
-    jobsList: state => state.jobDetails.jobsList,
+    isProfessional: state => state.userDetails.isProfessional,
+    jobsList: state => state.jobDetails.jobsList
   }),
 
   methods: {
     handleClose() {
-        this.$store.dispatch("setDisplayServiceList" , false);
+         this.$store.dispatch("setSelectedJob",null);
         this.$router.go(-1);
     },
-    handleServiceSelection(selectedService){
-        this.$store.dispatch("setSelectedService" , selectedService);
-        this.$store.dispatch("getServiceDetails" , selectedService);
-        this.$store.dispatch("setDisplayServiceList" , false);
+    handleJobSelection(selectedJob){
 
-        this.$router.push({ name: 'servicedetails' });
-
+        this.$store.dispatch("setSelectedJob",selectedJob);
+        this.$router.push({ name: 'jobdetails' });
     }
 
+  },
+
+  created : function(){
+    this.$store.dispatch("getJobsList");
   }
+
 };

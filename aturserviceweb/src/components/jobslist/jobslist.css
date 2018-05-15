@@ -13,15 +13,15 @@
   }
 
   .namecell{
-      width: 100px;
+      width: 50%;
       text-align: left;
   }
   .textcell{
-    width: 100px;
+    width: 100%;
     text-align: left;
 }
 
 .datecell{
-    width: 100px;
+    width: 50%;
     text-align: left;
 }
