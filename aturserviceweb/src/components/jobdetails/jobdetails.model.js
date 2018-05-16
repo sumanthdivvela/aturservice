@@ -1,5 +1,5 @@
 import {
-    mapState
+    mapState, mapActions
 } from "vuex";
 
 export default {
@@ -26,19 +26,13 @@ export default {
             this.$store.dispatch("setDisplayJobDetails", false);
 
         },
-        handleJobCancel(){
 
-        },
-        handleJobAccepted(){
-
-        },
-        handleJobCompleted(){
-
-        },
         handleCancel() {
             this.$store.dispatch("setDisplayProfessionalDetails" , true);
             this.$router.go(-1);
-        }
+        },
+
+        ...mapActions(["handleJobCancel", "handleJobAccepted", "handleJobCompleted"])
     },
     filters: {
         datefilter: function (date) {

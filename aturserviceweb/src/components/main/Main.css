@@ -37,6 +37,11 @@ body > .el-container {
 }
 
 @media only screen and (max-width: 768px) {
+
+  .apptitle {
+    font: bold 30px arial, sans-serif;
+  }
+
   .welMsg1 {
     font: bold 21px  arial, sans-serif;
   }

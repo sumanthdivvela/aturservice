@@ -26,6 +26,7 @@ export default {
             displayLogin: state => state.userDetails.displayLogin,
             isLoggedIn: state => state.userDetails.isLoggedIn,
             cityList: state => state.locDetails.cityList,
+            showNotify: state => state.jobDetails.showNotify
         })),
 
     methods: {

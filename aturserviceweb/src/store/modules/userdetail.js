@@ -46,7 +46,7 @@ const actions = {
         commit(mutationTypes.SET_DISPLAY_LOGIN_DETAILS, display);
     },
 
-    handleUserLogout({commit}){
+    handleUserLogout({commit, dispatch}){
         commit(mutationTypes.SET_IS_LOGGED_IN, false);
         commit(mutationTypes.SET_USERINFO, null);
         commit(mutationTypes.SET_PASSWORD, null);
@@ -54,6 +54,7 @@ const actions = {
         commit(mutationTypes.SET_IS_PROFESSIONAL, false);
         commit(mutationTypes.SET_DISPLAY_LOGIN_DETAILS, true);
         commit(mutationTypes.SET_LOGIN_CALLBACK, null);
+        dispatch('unRegisterForJobChanges');
     },
 
     getUserloggedin({commit}, callback){
@@ -61,7 +62,7 @@ const actions = {
         commit(mutationTypes.SET_LOGIN_CALLBACK, callback);
     },
 
-    validateUserlogin({commit,state} , callback){
+    validateUserlogin({commit,dispatch, state} , callback){
 
 
         let loggedIn = true;
@@ -73,6 +74,8 @@ const actions = {
                 loginCallback && loginCallback(loggedIn);
                 commit(mutationTypes.SET_IS_LOGGED_IN, true);
                 commit(mutationTypes.SET_USERINFO, { username : username, phoneNo: "888888888" }  );
+
+                dispatch('registerForJobChanges')
             }
         }) (state.username, loggedIn, state.loginCallback, callback);
 

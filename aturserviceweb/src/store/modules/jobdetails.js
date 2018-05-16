@@ -11,7 +11,8 @@ const mutationTypes = {
     SET_DISPLAY_JOB_DETAILS: "SET_DISPLAY_JOB_DETAILS",
     SET_JOBS_LIST: "SET_JOBS_LIST",
     SET_SELECTED_JOB: "SET_SELECTED_JOB",
-    UPDATE_JOB_STATUS: "UPDATE_JOB_STATUS"
+    UPDATE_JOB_STATUS: "UPDATE_JOB_STATUS",
+    SET_SHOW_NOTIFY: "SET_SHOW_NOTIFY"
 }
 
 const state = {
@@ -26,7 +27,8 @@ const state = {
         pincode: null
     },
     selectedJob: null,
-    jobsList: null
+    jobsList: null,
+    showNotify: false
 }
 
 // getters
@@ -35,9 +37,29 @@ const getters = {
 
 }
 
-// actions
+// actions 
 const actions = {
+
+    registerForJobChanges({commit,dispatch, rootState}){
+
+        const userDetails =rootState.userDetails;
+        const isProfessional = userDetails.isProfessional;
+        const username = userDetails.username;
+
+        jobDetails.registerForJobChanges({username, isProfessional , callback : function(){
+            commit(mutationTypes.SET_SHOW_NOTIFY , true);
+
+        }  })
+    },
+
+    unRegisterForJobChange(){
+        jobDetails.unRegisterForJobChange();
+    },
+
+
     getJobsList({commit, rootState}){
+
+
         const userDetails =rootState.userDetails;
         const isProf = userDetails.isProfessional;
         const username = userDetails.username;
@@ -54,7 +76,10 @@ const actions = {
         }else{
             jobDetails.getJobsByUser(username).then(cb).catch(e => console.log(e));
         }
+
+        commit(mutationTypes.SET_SHOW_NOTIFY , false);
     },
+
 
     prepareJobDetails : function({commit,state, rootState}){
        
@@ -105,7 +130,24 @@ const actions = {
         commit(mutationTypes.UPDATE_JOB_STATUS, jobDetails.JOB_STATUS.CREATED);
         jobDetails.createJobRequest(state.selectedJob);
         commit(mutationTypes.SET_SELECTED_JOB, null);
-    }
+    },
+
+    handleJobCancel({commit, state}){
+        jobDetails.updateJobStatus(state.selectedJob, jobDetails.JOB_STATUS.CANCELED);
+
+        commit(mutationTypes.SET_SELECTED_JOB, null);
+    },
+    handleJobAccepted({commit, state}){
+        jobDetails.updateJobStatus(state.selectedJob, jobDetails.JOB_STATUS.ACCEPTED);
+
+        commit(mutationTypes.SET_SELECTED_JOB, null);
+
+    },
+    handleJobCompleted({commit, state}){
+        jobDetails.updateJobStatus(state.selectedJob, jobDetails.JOB_STATUS.COMPLETED);
+
+        commit(mutationTypes.SET_SELECTED_JOB, null);
+    },
 }
 
 // mutations
@@ -140,6 +182,10 @@ const mutations = {
 
     [mutationTypes.SET_DISPLAY_JOB_LOCATION] : function(state, display){
         state.displayJobLocation = !!display;
+    },
+
+    [mutationTypes.SET_SHOW_NOTIFY] : function(state, noftify){
+        state.showNotify = !!noftify;
     },
 
     [mutationTypes.SET_DISPLAY_JOB_DETAILS] : function(state, display){

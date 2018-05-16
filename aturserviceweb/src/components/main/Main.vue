@@ -4,18 +4,20 @@
             <el-header>
 
                 <el-row :gutter="1">
-                    <el-col :xs="18" :sm="20" :md="20" :lg="20" :xl="20">
+                    <el-col :xs="12" :sm="18" :md="18" :lg="20" :xl="20">
                         <div class="grid-content apptitle">
                             @ Ur Service
                         </div>
                     </el-col>
-                    <el-col :xs="6" :sm="4" :md="4" :lg="4" :xl="4">
+                    <el-col :xs="12" :sm="6" :md="6" :lg="4" :xl="4">
                         <div class="grid-content">
 
                             
-                            <router-link  v-if="isLoggedIn" class="el-button el-button--info" to="/jobslist">
-                            Jobs
-                            </router-link>
+                                <router-link  v-if="isLoggedIn" class="el-button el-button--info" to="/jobslist">
+                                    <el-badge :is-dot="showNotify" class="notify">
+                                    Jobs
+                                    </el-badge>
+                                </router-link>
                              
 
                             <el-button 
@@ -84,6 +86,18 @@
   padding: 10px 0px;
   font: bold 40px arial, sans-serif;
   color: #fff;
+}
+
+.notify{
+    margin-right: -5px;
+    margin-top: -5px;
+}
+
+.el-badge__content is-fixed is-dot  {
+
+height: 15px;
+width: 15px;
+
 }
 
 .el-select .el-input,

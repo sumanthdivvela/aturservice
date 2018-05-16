@@ -37,7 +37,7 @@
             <br/>
 
             <div><b> Job Date : </b> {{ selectedJob.requestedDate|datefilter}}</div>
-            <div><b> Job Date : </b> {{ selectedJob.status.toLowerCase() }}</div>
+            <div><b> Job Status : </b> {{ selectedJob.status.toLowerCase() }}</div>
        
         </div>
          

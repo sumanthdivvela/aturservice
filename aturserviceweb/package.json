@@ -9,6 +9,8 @@
     "test": "mocha-webpack --webpack-config ./node_modules/@vue/cli-service/webpack.config.js --require test/setup.js test/**/*.spec.js"
   },
   "dependencies": {
+    "dexie": "^2.0.3",
+    "dexie-observable": "^1.0.0-beta.4",
     "element-ui": "^2.3.7",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
