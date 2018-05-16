@@ -40,7 +40,7 @@ const getters = {
 // actions 
 const actions = {
 
-    registerForJobChanges({commit,dispatch, rootState}){
+    registerForJobChanges({commit, rootState}){
 
         const userDetails =rootState.userDetails;
         const isProfessional = userDetails.isProfessional;
@@ -52,7 +52,7 @@ const actions = {
         }  })
     },
 
-    unRegisterForJobChange(){
+    unRegisterForJobChanges(){
         jobDetails.unRegisterForJobChange();
     },
 
