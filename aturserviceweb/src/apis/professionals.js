@@ -84,7 +84,7 @@ function getProfessionalsByService(service_key, pincode) {
 
             const professionals = professionalsData.filter(prof => prof.locations.includes(pincode)
                   /* && prof.services_list.includes(service_key) //removed this condition as professonals data is less . */
-            );
+            ).sort( (a, b )  => a.avg_rating > b.avg_rating ? -1 : 1);
             resolve(professionals || []);
         } catch (e) {
             reject(e);
